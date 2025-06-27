@@ -1,0 +1,93 @@
+/* General stuff */
+body {
+  background-color: #d1dcee;
+}
+h1 {
+  font-size: 2.5rem; 
+  font-weight: bold; 
+  color: #333; 
+  line-height: 1.2; 
+  margin-bottom: 20px; 
+}
+h2 {
+  font-size: 2rem;  
+  font-weight: bold;
+  color: #444; 
+  line-height: 1.3;  
+  margin-bottom: 15px; 
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 10px
+}
+h4 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 10px
+}
+p {
+  font-size: 1rem; 
+  color: #555; 
+  line-height: 1.6;  
+  margin-bottom: 1em; 
+}
+
+/* Indiv. page contents */
+.container {
+  max-width: 1600px; 
+  margin: 0 auto; 
+  padding: 20px; 
+}
+
+
+/* Horizontal menu */
+#horizontal-menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  width: 100%
+}
+#horizontal-menu li {
+  float: left;
+}
+#horizontal-menu li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+#horizontal-menu li a:hover {
+  background-color: #111;
+}
+
+/* Vertical menu (Plain with bullet points) */
+#vertical-list {
+  list-style-type: disc; /* Ensures bullets appear */
+  margin: 20px 0; /* Adds spacing */
+  padding-left: 40px; /* Aligns bullets properly */
+}
+#vertical-list li {
+  display: list-item; /* Ensures default bullet behavior */
+  color: #555;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1em;
+} 
+
+/* Embedded static images */
+.image-container {
+  text-align: left;
+}
+img {
+  border: 1px solid #000; /* Adds a black border */
+  max-width: 100%; /* Ensures image is responsive */
+  height: auto; /* Keeps the image's aspect ratio */
+}

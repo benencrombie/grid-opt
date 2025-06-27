@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Methodology{% endblock %}
+
+{% block content %}
+    <h2>Substation Placement Optimization</h2>
+    <p>The problem at hand is optimizing a network of substation-zipcode relationships. The parameters to prioritize are distances between substations and zipcodes, populations of zipcodes, and capacities of substations. The population sizes, number of substations, and the capacities of those substations are fixed. Therefore, the locations of each substation can be adjusted to optimize grid efficiency.</p>
+    <h3>Model Equation</h3>
+    <p>A cost component of a substation, i, to a zipcode, j is modeled the following:
+
+    <math display="block">
+        <mrow> 
+            <mi>c</mi>
+            <mo>=</mo>
+            <mfrac>
+                <mrow>
+                  <mi>1</mi>
+                </mrow>
+                <mrow>
+                    <msub>
+                        <mi>ε</mi>
+                        <mrow>
+                            <mi>i</mi>
+                        </mrow>
+                    </msub>
+                </mrow>
+            </mfrac>
+            <mo>(</mo>
+            <msub>
+                <mi>d</mi>
+                <mrow>
+                    <mi>ij</mi>
+                </mrow>
+            </msub>
+            <mo>×</mo>
+            <msub>
+                <mi>p</mi>
+                <mrow>
+                    <mi>j</mi>
+                </mrow>
+            </msub>
+            <mo>)</mo>
+        </mrow> 
+    </math>
+
+    <p>This will be modeled by a winner-takes-all approach, where any given zipcode will be assigned to a substation - represented by the minimum "cost" of that zipcode's relationships to substations. The total score of a grid arrangement will simply be the average of all zipcode costs. Therefore, the complete cost function is modeled by: </p>
+
+    <math display="block">
+        <mrow>
+            <msub>
+                <mi>c</mi>
+                <mrow> 
+                    <mi>i</mi>
+                    <mi>j</mi>
+                </mrow>
+            </msub>
+            <mo>=</mo>
+            <mfrac>
+                <mrow>
+                  <mi>1</mi>
+                </mrow>
+                <mrow>
+                    <msub>
+                        <mi>N</mi>
+                        <mrow>
+                            <mi>i</mi>
+                        </mrow>
+                    </msub>
+                </mrow>
+            </mfrac>
+            <munder>
+                <mo>∑</mo>
+                <mrow>
+                    <mi>i</mi>
+                </mrow>
+            </munder>
+            <mo>[</mo>
+            <mrow> 
+                <mfrac>
+                    <mrow>
+                      <mi>1</mi>
+                    </mrow>
+                    <mrow>
+                        <msub>
+                            <mi>ε</mi>
+                            <mrow>
+                                <mi>i</mi>
+                            </mrow>
+                        </msub>
+                    </mrow>
+                </mfrac>
+            </mrow> 
+            <munder>
+                <mo>min</mo>
+                <mrow>
+                    <mi>j</mi>
+                </mrow>
+            </munder>
+            <mrow>
+                <mo>(</mo>
+                <msub>
+                    <mi>d</mi>
+                    <mrow>
+                        <mi>ij</mi>
+                    </mrow>
+                </msub>
+                <mo>×</mo>
+                <msub>
+                    <mi>p</mi>
+                    <mrow>
+                        <mi>j</mi>
+                    </mrow>
+                </msub>
+                <mo>)</mo>
+            </mrow>
+            <mo>]</mo>
+        </mrow>
+    </math>
+
+    <h3>Numerical Solution</h3>
+    <p>The minimum of the cost function will yield the optimal substation coordinates. Since the function is not differentiable, a local minimum will be found using gradient descent.</p>
+
+    <h3>Methodology Limitations</h3>
+    <ul id="vertical-list">
+        <li><strong>Algorithm Greed:</strong> Gradient descent yields a local minimum of the cost function.</li>
+
+    </ul>
+
+{% endblock %}
