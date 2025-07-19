@@ -7,7 +7,7 @@
 <p>The interactive tool below can be used to optimize initial "guesses" for SMR placements (see <a href="{{ url_for('methodology') }}">methodology.</a>).</p>
 
 <h3>Configure</h3>
-<p>This tool is currently set to optimize 5 SMR placements, but future revisions may allow for any number to be picked, and for initial "guesses" to be directly modified in the application. If desirable, users can manually change config/grid_config.json with the same json structure to alter the number and initial positions of SMRs. Certain model parameters (e.g., learning rate and step size for gradient descent) were found to be appropriate for this problem to approach convergence while limiting compute. If desirable, these can be modified in config/model_config.json.</p>
+<p>This tool is currently set to optimize 5 SMR placements, but future revisions may allow for any number to be picked, and for initial "guesses" to be directly modified in the application. If desirable, users can manually change config/grid_config.json with the same json structure to alter the number and initial positions of SMRs. Certain model parameters (e.g., learning rate and step size for gradient descent) were found to be appropriate for this problem to approach convergence while limiting compute (i.e., the model should get close to convergence after 100 iterations as it is a simple scoping tool). If desirable, these can be modified in config/model_config.json.</p>
 <form id="optimizer-form" onsubmit="startRun(); return false;">
   <label for="method">Solver:</label>
   <select id="method">
@@ -24,7 +24,8 @@
 </form>
 
 <h3>Optimization Output</h3>
-<img id="plot" src="/static/assets/pop_cropped.png" width="600" style="border: 1px solid #ccc; margin-top: 20px;"/>
+<p>SMRs are represented as blue triangles. The shade of zipcodes corresponds to their individual responses to SMR placements with lighter hues corresponding to better satisfaciton. The ideal solution accounts for all zipcode-SMR relationships.</p>
+<img id="plot" src="/static/assets/iter_0.png" width="600" style="border: 1px solid #ccc; margin-top: 20px;"/>
 {% endblock %}
 
 {% block scripts %}
