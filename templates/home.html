@@ -6,24 +6,24 @@
     <!-- Page Header (different from title) -->
     <h2>Grid Development</h2>
     <!-- Paragraph body -->
-    <p>With the rise of artificial intelligence and the growth of various tech industries, energy demands have soared. Meanwhile, grid technologies have been consistently lacking. The current grid system is not able to sustain these demands nor is it able to accommodate the country's goals with nuclear energy. This application provides a tool for utility companies or larger bodies to model and optimize the placement of substations in the grid. This application may be expanded to include the placements of other grid elements such as power sources and power lines.</p>
+    <p>With the rise of artificial intelligence and the growth of various tech industries, energy demands have soared. Meanwhile, grid technologies have been consistently lacking. The current grid system is not able to sustain these demands nor is it able to accommodate the country's goals with nuclear energy. This application provides a tool for utility companies or larger bodies to model and optimize the placement of Small Modular Reactors (SMRs) in the grid. This application may be expanded to include the placements of other grid elements such as substations, other power sources, and power lines. Visit the <a href="{{ url_for('tool') }}">tool</a> page to optimize SMR placements.</p>
     
     <!-- Subheader -->
     <h3>Considerations</h3>
-    <p>This tool considers the populations of zipcodes and their distances from substations and the capacity of each substation. The populations of zipcodes are a proxy for energy demand. The distances from population bodies to substations is important because powerlines are expensive to maintain or upgrade. The "cost" of a powerline can be thought of as a function of its length, thickness, material properties, etc.</p>
+    <p>This tool considers the populations of zipcodes and their distances from SMRs. The populations of zipcodes are a proxy for energy demand. The distances from population bodies to substations is important because powerlines are expensive to maintain or upgrade. The "cost" of a powerline can be thought of as a function of its length, thickness, material properties, etc.</p>
     <p>The complete equation to model the "cost" of a given grid arrangement is found in the <a href="{{ url_for('methodology') }}">methodology</a> page.</p>
     <div class="image-container">
         <!-- Media title -->
         <h4>Population Map of Virginia</h4>
-        <img src="assets/pop_cropped.png" alt="Population Map of Virginia">
+        <p>For simplicity and ease of computation, populations were gathered from each zipcode in Virginia. The developed algorithms utilize zipcode populations and euclidian distance from that zipcode's geometric centroid. The plot below shows a population map of Virginia, scraped from the 2020 census.</p>
+        <img src="/static/assets/pop_cropped.png" alt="Population Map of Virginia">
     </div>
 
     <h3>Application Limitations</h3>
-    <p>This application is meant to be used by utliities and larger bodies within the state of Virginia. However, the concept could be expanded to other divisions of the country.</p>
+    <p>This application serves as a scoping tool. Further analysis and optimization should be done on this application's outputs. This application is meant to be used by utliities and larger bodies within the state of Virginia. However, the concept could be expanded to other divisions of the country.</p>
     <p>Additionally, the following items should be considered before industry-wide adoption of this application:</p> 
     <ul id="vertical-list">
         <li><strong>Data Centers:</strong> Data centers require large amounts of power. This decreases using population as a proxy for energy demand.</li>
-        <li><strong>Small Modular Reactors:</strong> New nuclear technologies will revolutionize the grid. Small modular reactors can potentially be paired with data centers or outlier areas with high energy demands.</li>
         <li><strong>Power Line Properties:</strong> Modeling powerlines themselves would improve this model, as the effectiveness of power transfer relies heavily on wire properties such as insulating material and thickness.</li>
         <li><strong>Cost Constraints:</strong> Grid improvements can be expensive. The costs of adding new substations, battery storages, etc. should be considered.</li>
         <li><strong>Maintenance:</strong> In addition to upfront costs, resources need to be allocated to staffing and maintaining the grid.</li>

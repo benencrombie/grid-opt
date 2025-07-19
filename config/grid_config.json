@@ -2,23 +2,23 @@
     "Profile": {
 
         "100": 
-            {
-                "x_coord": -9.0e6,
-                "y_coord": 4.4e6,
-                "weight": 1
-            },
+        {
+            "x_coord": -9.0e6,
+            "y_coord": 4.4e6,
+            "weight": 1
+        },
         "200": 
-            {
-                "x_coord": -8.8e6,
-                "y_coord": 4.4e6,
-                "weight": 2
-            },
+        {
+            "x_coord": -8.8e6,
+            "y_coord": 4.4e6,
+            "weight": 1
+        },
         "300": 
-            {
-                "x_coord": -8.6e6,
-                "y_coord": 4.4e6,
-                "weight": 1
-            },
+        {
+            "x_coord": -8.6e6,
+            "y_coord": 4.4e6,
+            "weight": 1
+        },
         "400": 
         {
             "x_coord": -8.6e6,
@@ -29,7 +29,7 @@
         {
             "x_coord": -8.8e6,
             "y_coord": 4.6e6,
-            "weight": 2
+            "weight": 1
         }
     }
 }
