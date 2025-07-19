@@ -2,6 +2,7 @@ from flask import Flask, render_template, send_from_directory
 from flask_socketio import SocketIO
 from main.Numericals import SMROptimizer
 from threading import Thread
+import os
 
 app = Flask(__name__, template_folder = "templates")
 # SocketIO used to route and update matplotlib figures
@@ -45,5 +46,7 @@ def handle_start_run(data):
 
 
 if __name__ == "__main__":
+    # Make outputs folder if not exist
+    os.makedirs("outputs", exist_ok=True)
     # Run using socketio for dynamic plotting.
     socketio.run(app, debug=True)
