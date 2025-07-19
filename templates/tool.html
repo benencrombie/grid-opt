@@ -3,9 +3,43 @@
 {% block title %}Optimization Tool{% endblock %}
 
 {% block content %}
-    <h2>Tool Header</h2>
-    <p>Paragraph text.</p>
-    <h3>Subtitle</h3>
-    <p>[INTERACTIVE PLOT]</p>
-    <p>[BUTTONS FOR CRUD OPERATIONS ON SUBSTATION PLACEMENTS]</p>
+<h2>SMR Placement Optimization</h2>
+<p>The interactive tool below can be used to optimize initial "guesses" for SMR placements (see <a href="{{ url_for('methodology') }}">methodology</a>).</p>
+
+<h3>Configure</h3>
+<form id="optimizer-form" onsubmit="startRun(); return false;">
+  <label for="method">Method:</label>
+  <select id="method">
+    <!-- More methods as they're created -->
+    <option value="GD">Gradient Descent</option>
+    <option value="SA">Simulated Annealing</option>
+  </select><br><br>
+
+  <button type="submit">Run Optimization</button>
+</form>
+
+<h3>Optimization Output</h3>
+<img id="plot" src="assets/pop_cropped.png" width="600" style="border: 1px solid #ccc; margin-top: 20px;"/>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+<script>
+  const socket = io();
+
+  function startRun() {
+    const method = document.getElementById('method').value;
+
+    // Emit the method chosen (your backend expects 'method' key)
+    socket.emit('start_run', {
+      method: method
+    });
+  }
+
+  socket.on('update_plot', (data) => {
+    const img = document.getElementById('plot');
+    img.src = data.filename + '?t=' + new Date().getTime();  // cache-busting
+  });
+</script>
 {% endblock %}

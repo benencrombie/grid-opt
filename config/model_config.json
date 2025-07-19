@@ -1,11 +1,12 @@
 {
     "GD": {
-        "max_iter" : 5000,
+        "max_iter" : 500,
         "learning_rate" : 50, 
         "dxy" : 1,
         "dw" : 0
     },
     "SA": {
-        "max_iter" : 5000
+        "max_iter" : 5000,
+        "temperature" : 10000
     }
 }
