@@ -4,23 +4,27 @@
 
 {% block content %}
 <h2>SMR Placement Optimization</h2>
-<p>The interactive tool below can be used to optimize initial "guesses" for SMR placements (see <a href="{{ url_for('methodology') }}">methodology</a>).</p>
+<p>The interactive tool below can be used to optimize initial "guesses" for SMR placements (see <a href="{{ url_for('methodology') }}">methodology.</a>).</p>
 
 <h3>Configure</h3>
+<p>This tool is currently set to optimize 5 SMR placements, but future revisions may allow for any number to be picked, and for initial "guesses" to be directly modified in the application. If desirable, users can manually change config/grid_config.json with the same json structure to alter the number and initial positions of SMRs. Certain model parameters (e.g., learning rate and step size for gradient descent) were found to be appropriate for this problem to approach convergence while limiting compute. If desirable, these can be modified in config/model_config.json.</p>
 <form id="optimizer-form" onsubmit="startRun(); return false;">
-  <label for="method">Method:</label>
+  <label for="method">Solver:</label>
   <select id="method">
     <!-- More methods as they're created -->
     <option value="GD">Gradient Descent</option>
     <option value="SA">Simulated Annealing</option>
   </select><br><br>
 
+  <label for="iterations">Iterations:</label>
+  <input type="number" id="iterations" name="iterations" min="1" value="100"><br></br>
+  <br><br>
+
   <button type="submit">Run Optimization</button>
 </form>
 
 <h3>Optimization Output</h3>
-<img id="plot" src="assets/pop_cropped.png" width="600" style="border: 1px solid #ccc; margin-top: 20px;"/>
-
+<img id="plot" src="/static/assets/pop_cropped.png" width="600" style="border: 1px solid #ccc; margin-top: 20px;"/>
 {% endblock %}
 
 {% block scripts %}
@@ -28,18 +32,21 @@
 <script>
   const socket = io();
 
+  socket.on('connect', () => {
+    console.log('Socket connected');
+  });
+
   function startRun() {
     const method = document.getElementById('method').value;
-
-    // Emit the method chosen (your backend expects 'method' key)
-    socket.emit('start_run', {
-      method: method
-    });
+    const iterations = document.getElementById('iterations').value
+    console.log("Run optimization clicked, method:", method);
+    socket.emit('start_run', { method: method, iterations: iterations });
   }
 
   socket.on('update_plot', (data) => {
     const img = document.getElementById('plot');
-    img.src = data.filename + '?t=' + new Date().getTime();  // cache-busting
+    console.log('Frontend filename:', data.filename)
+    img.src = data.filename + '?t=' + new Date().getTime();
   });
 </script>
 {% endblock %}
